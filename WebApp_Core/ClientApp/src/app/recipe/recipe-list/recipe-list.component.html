@@ -1,0 +1,153 @@
+
+<div style="display:block;justify-content:center;padding-left:11px;text-align:center;padding-bottom:100px;" *ngIf="(isAuthenticated | async)">
+    <br />
+    <h2>Search for new recipes.</h2>
+    <form #searchForm="ngForm" (ngSubmit)="searchRecipes(searchForm.value)">
+
+        <div class="card-body row no-gutters align-items-center">
+
+
+            <div class="col">
+                <input style="border-radius:20px; padding-right:20px;font-size:18px;" class="form-control form-control-lg form-control-borderless" type="text" [(ngModel)]="searchstring" name="search" placeholder="Search by title, ingredients, or keywords">
+            </div>
+
+            <!--<div class="col-auto">
+                <i style="position: absolute; right: 20px; top: -14px; color:grey;" class="fa fa-search h4"></i>
+            </div>-->
+
+        </div>
+        <div class="searchbar-form-buttons">
+            <button id="search" class="button" type="submit"><span>Search </span></button>
+            <button class="button" type="button" (click)="goToCreateRecipe()"><span>Create Recipe </span></button>
+        </div>
+
+    </form>
+
+    <br />
+    <br />
+
+    <ng-template ngFor let-recipe [ngForOf]="recipes" let-i="index">
+        <div *ngIf="i < getLimit()">
+            <div class="card baseBlock" (click)="goToRecipeDetail(recipe.id)">
+                <div id="recipe_card" class="card-body" style="min-width:400px;min-height:300px;max-width:600px;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ recipe.title }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ recipe.type }}</h6>
+                        <div style="color:grey; font-size:20px;" class="col-auto">
+                            <i style="right: 20px; top: -14px; color:grey;" class="fa fa-clock-o h4"></i>
+                            {{ recipe.time }}m
+                        </div>
+
+
+                        <!-- Ingredients -->
+                        <div>
+                            <hr />
+                            <p style="color:grey;">Ingredients: </p>
+                            <div class=fadebody style="max-height: 100px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                position: relative;
+                content: none;
+                            ">
+                                <p class="card-text" style="white-space: pre-wrap; overflow-wrap: break-word;">{{ recipe.ingredients }}</p>
+                            </div>
+                        </div>
+
+
+                        <!-- Directions -->
+                        <br />
+                        <hr />
+                        <p style="color:grey;">Directions: </p>
+                        <div class=fadebody style="max-height: 70px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                position: relative;
+                content: none;
+                            ">
+                            <p class="card-text" style="white-space: pre-wrap; overflow-wrap: break-word;">{{ recipe.body }}</p>
+
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                        <button class="button" type="button" (click)="goToRecipeDetail(recipe.id)"><span>View Recipe </span></button>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </ng-template>
+
+
+
+
+
+    <!--<ng-template ngFor let-recipe [ngForOf]="recipes" let-i="index">
+        <div *ngIf="i < getLimit()">
+            <div id="recipe_card" class="card" style="min-width:400px;min-height:300px;max-width:400px;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ recipe.title }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ recipe.type }}</h6>
+
+                    <div style="color:grey; font-size:20px;" class="col-auto">
+                        <i style="right: 20px; top: -14px; color:grey;" class="fa fa-clock-o h4"></i>
+                        {{ recipe.time }}m
+                    </div>
+
+                    <hr />
+                    <div class=fadebody style="max-height: 170px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            position: relative;
+            content: none;
+    ">
+                        <p class="card-text" style="word-wrap: break-word;">{{ recipe.body }}</p>
+
+                    </div>
+                    <br />
+                    <br />
+                    <button class="button" type="button" (click)="goToRecipeDetail(recipe.id)"><span>View Recipe </span></button>
+
+                </div>
+            </div>
+            <br />
+            <br />
+            <br />
+        </div>
+    </ng-template>-->
+    <!--<div id="scrollContent" *ngFor="let recipe of recipes">
+
+        <div id="recipe_card" class="card" style="min-width:350px;min-height:300px;max-width:400px;">
+            <div class="card-body">
+                <h5 class="card-title">{{ recipe.title }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ recipe.type }}</h6>
+
+                <div style="color:grey; font-size:20px;" class="col-auto">
+                    <i style="right: 20px; top: -14px; color:grey;" class="fa fa-clock-o h4"></i>
+                    {{ recipe.time }}m
+                </div>
+
+                <hr />
+                <div class=fadebody style="max-height: 170px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            position: relative;
+            content: none;
+    ">
+                    <p class="card-text" style="word-wrap: break-word;">{{ recipe.body }}</p>
+
+                </div>
+                <br />
+                <button class="button" type="button" (click)="goToRecipeDetail(recipe.id)"><span>View Recipe </span></button>
+
+            </div>
+        </div>
+        <br />
+        <br />
+
+    </div>-->
+
+
+</div>
+

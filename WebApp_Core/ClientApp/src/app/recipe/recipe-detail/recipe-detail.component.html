@@ -1,0 +1,51 @@
+<a href="/recipe-list" style="justify-content:left;font-size:20px;"> ← Back to list </a>
+<div style="display:block;justify-content:center;text-align:center;width:100%;height:auto;max-width:650px;min-width:200px;padding-bottom:100px;" *ngIf="(isAuthenticated | async)">
+    <br />
+    <!--<h2 style="text-align:center;word-break:break-all ">{{ recipe.title }}</h2>-->
+    <br />
+    <div class="card baseBlock" style="max-width:550px;min-height:500px;width:100%;height:auto;">
+        <div class="card-body">
+            <h5 class="card-title" style="word-break: break-all;">{{ recipe.title }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted" style="word-wrap: break-word;">{{ recipe.type }}</h6>
+
+            <div style="color:grey; font-size:20px;" class="col-auto">
+                <i style="right: 20px; top: -14px; color:grey;word-wrap: break-word;" class="fa fa-clock-o h4"></i>
+                {{ recipe.time }}m
+            </div>
+
+            <!-- Description -->
+            <br />
+            <hr />
+            <p style="color:grey;">Description: </p>
+            <p class="card-text" style="white-space: pre-wrap; overflow-wrap: break-word;">{{ recipe.description }}</p>
+
+
+            <!-- Ingredients -->
+            <br />
+            <hr />
+            <p style="color:grey;">Ingredients: </p>
+            <p class="card-text" style="white-space: pre-wrap; overflow-wrap: break-word;text-align:left;padding-left:40px;">{{ recipe.ingredients }}</p>
+
+
+            <!-- Directions -->
+            <br />
+            <hr />
+            <p style="color:grey;">Directions: </p>
+            <p class="card-text" style="white-space: pre-wrap;overflow-wrap: break-word;text-align: left;padding-left: 40px;">{{ recipe.body }}</p>
+
+
+            <!-- Additional Info-->
+            <br />
+            <hr />
+            <p style="color:grey;">Additional Info: </p>
+            <p class="card-text" style="white-space: pre-wrap; overflow-wrap: break-word;">{{ recipe.additionalInfo }}</p>
+        </div>
+    </div>
+
+    <div *ngIf="(userName | async) == recipe.author">
+        <br />
+        <button class="button" type="button" (click)="goToRecipeEdit(recipe.id)"><span>Edit Recipe</span></button>
+    </div>
+
+</div>
+

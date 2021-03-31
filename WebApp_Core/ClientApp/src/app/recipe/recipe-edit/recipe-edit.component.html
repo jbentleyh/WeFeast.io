@@ -1,0 +1,75 @@
+<a href="/recipe-list" style="font-size:20px;"> ← Back to list </a>
+<div *ngIf="(isAuthenticated | async)">
+    <div *ngIf="(userName | async) == recipe.author">
+        <br />
+        <h2 style="text-align:center;word-break: break-all;">Edit the '{{recipe.title}}' recipe.</h2>
+        <form #recipeForm="ngForm" (ngSubmit)="save(recipeForm.value)">
+            <input name="id" type="hidden" [(ngModel)]="recipe.id">
+            <input name="author" type="hidden" [(ngModel)]="recipe.author">
+            <br />
+            <div style="display: grid;
+        justify-content: center;
+        text-align: center;">
+                <!-- Title -->
+                <label for="title">
+                    Recipe name
+                </label>
+                <input style="text-wrap:normal;" name="title" type="text" [(ngModel)]="recipe.title">
+
+
+                <br />
+                <!-- Cook Time -->
+                <label for="time">
+                    Cook Time (minutes)
+                </label>
+                <input name="time" type="number" [(ngModel)]="recipe.time">
+
+
+                <br />
+                <!-- Type -->
+                <label for="type">
+                    Which keywords best describe the recipe?
+                </label>
+                <input name="type" type="text" [(ngModel)]="recipe.type">
+
+                <br />
+                <!-- Description -->
+                <label for="description">
+                    Description
+                </label>
+                <textarea style="width: 475px; height: 100px; white-space: pre-wrap; overflow-wrap: break-word;" id="_description" name="description" type="text" [(ngModel)]="recipe.description"></textarea>
+
+                <br />
+                <!-- Ingredients -->
+                <label for="ingredients">
+                    Ingredients<p style="display:inline-block;color:grey;">*</p>
+                </label>
+                <textarea style="height: 250px; white-space: pre-wrap; overflow-wrap: break-word;" id="_ingredients" name="ingredients" type="text" [(ngModel)]="recipe.ingredients"></textarea>
+
+
+                <!-- Directions -->
+                <br />
+                <label for="body">
+                    Directions (How is it made?)
+                </label>
+                <textarea style="height:350px;white-space:pre-wrap;overflow-wrap:break-word;" id="_body" name="body" type="text" [(ngModel)]="recipe.body"></textarea>
+
+                <br />
+                <!-- Additional Info -->
+                <label for="additionalinfo">
+                    Additional Info
+                </label>
+                <textarea style="height: 60px; white-space: pre-wrap; overflow-wrap: break-word;" id="_additionalinfo" name="additionalinfo" type="text" [(ngModel)]="recipe.additionalInfo"></textarea>
+
+
+                <br />
+                <div style="padding-bottom:200px;">
+                    <button class="button" type="submit"><span>Save</span></button>
+                    <button class="button" type="button" (click)="remove(recipe.id)"><span>Delete</span></button>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>
