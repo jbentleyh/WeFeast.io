@@ -6,6 +6,8 @@ WeFeast is a production ready recipe sharing platform. WeFeast provides fully as
 
 WeFeast's features include searching, creating, editing, and viewing recipes.
 
+website demo (backend is currently deactivated): https://wefeast-io.azurewebsites.net/
+
 ## Search & View
 
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/45768739/113216936-b198a580-9242-11eb-8e50-017e87993085.gif)
